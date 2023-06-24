@@ -1,17 +1,17 @@
 const loadPhones = async(searchText) =>{
- const url='https://openapi.programming-hero.com/api/phones?search=${searchText}'
- const res= await fetch(url);
- const data= await res.json();
- displayPhones(data.data);
+    const url =`https://openapi.programming-hero.com/api/phones?search=${searchText}`
+    const res = await fetch(url);
+    const data = await res.json();
+    displayPhones(data.data);
 }
-const displayPhones = phones => {
+const displayPhones = phones =>{
     // console.log(phones);
-    const phonesContainer = document.getElementById('phones-container');
-    phonesContainer.textContent = '';
-    phones.forEach(phone =>{
-        const phoneDiv = document.createElement('div');
+    const phonesContainer = document.getElementById('phone-container');
+    phonesContainer.textContent ='';
+    phones.forEach(phone=>{
+        const phoneDiv = document.createElement('div')
         phoneDiv.classList.add('col');
-        phoneDiv.innerHTML =`
+        phoneDiv.innerHTML=`
         <div class="card p-4">
         <img src="${phone.image}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -23,12 +23,10 @@ const displayPhones = phones => {
         phonesContainer.appendChild(phoneDiv);
     })
 }
-
 document.getElementById('btn-search').addEventListener('click',function(){
-    const searchField = document.getElementById('search-field');
-    const searchText = searchField.value;
-    loadPhones(searchText);
-    
-})
- 
+  const searchField =  document.getElementById('search-field');
+  const searchText = searchField.value ;
+  loadPhones(searchText);
+});
+
 loadPhones();
